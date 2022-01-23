@@ -1,0 +1,22 @@
+/******** 治安防范体系折叠面板 ********/
+.safety-collapse {
+	background-color: transparent; border-radius: 0; border: none;
+	.ivu-collapse-item {
+		border: none;
+		.ivu-collapse-header {
+				color: #1cb1ff; font-size: 18px; padding-left: 0; display: inline-flex; align-items: center; font-weight: bold;
+			 	i {
+			 		color: #ffda2e; font-size: 32px;
+			 		&:before { content: "\F217"; }
+			 	}
+			 	b { font-size: 24px; margin-left: 160px; margin-right: 15px; color: #1cb1ff; }
+		}
+		.ivu-collapse-content {
+			padding: 0; background-color: transparent;
+		}
+	}
+	.ivu-collapse-item.ivu-collapse-item-active > .ivu-collapse-header > i {
+		transform: rotate(0deg);
+		&:before { content: "\F208" }
+	}
+}

@@ -1,0 +1,26 @@
+.ivu-date-picker{
+  color: #333;
+  position: relative;
+}
+.ivu-date-picker .ivu-input{
+  border-radius: 0;
+  border-color: #2895c8;
+  background: rgba(34, 114, 186, .5);
+  color: #fff;
+  height: 40px;
+  font-size: 16px;
+}
+.ivu-date-picker .ivu-input-icon{
+  width: 24px;
+  height: 24px;
+  line-height: 40px;
+  font-size: 16px;
+  color: #fff;
+}
+.ivu-date-picker .ivu-input-wrapper{
+  vertical-align: baseline;
+}
+.ivu-date-picker .ivu-select-dropdown{
+  left: 0 !important;
+  top: 32px !important;
+}

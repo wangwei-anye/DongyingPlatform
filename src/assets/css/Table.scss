@@ -1,0 +1,157 @@
+/******** 表格（斑马线） ********/
+.stripe-table {
+  border: 1px solid #125f9d; border-bottom: 0; border-right: 0;
+}
+.stripe-table .ivu-table {
+  background-color: transparent;
+}
+.stripe-table table {
+  font-size: 16px; color: #fff;
+}
+.stripe-table .ivu-table {
+  &:before, &:after {
+    background-color: #125f9d;
+  }
+}
+.stripe-table table tr th {
+  height: initial; padding: 9px 0; background-color: rgba(12, 62, 130, .6);
+  border-bottom: 1px solid #125f9d; text-align: center; line-height: 36px;
+}
+.stripe-table table tr td  {
+  background-color: transparent; border-bottom: 1px solid #125f9d; text-align: center; padding: 12px 0; color: #1cb1ff;
+}
+.stripe-table table tr:nth-child(even) td {
+  background-color: rgba(12, 62, 130, .3);
+}
+.stripe-table table tr th:first-child, .stripe-table table tr td:first-child {
+  text-align: left;
+}
+.ivu-btn-userrole {
+  width: 90px; background-color: transparent; border-color: #01a3fe; color: #1cb1ff; font-size: 14px; padding: 4px 15px;
+  &:hover { background-color: #01a3fe; border-color: #01a3fe; color: #fff; }
+}
+
+/******** 表格（边框线） ********/
+.border-table {
+  border: 1px solid #125f9d; border-bottom: 0; border-right: 0;
+}
+.border-table .ivu-table {
+  background-color: transparent;
+}
+.border-table table {
+  font-size: 16px; color: #fff;
+}
+.border-table .ivu-table {
+  &:before, &:after {
+    background-color: #125f9d;
+  }
+}
+.border-table table tr th {
+  height: initial; padding: 15px 0; background-color: rgba(12, 62, 130, .6);
+  border-bottom: 1px solid #125f9d; text-align: center; border-right: 1px solid #125f9d;
+  .ivu-table-cell { line-height: 28px; }
+}
+.border-table table tr td  {
+  background-color: transparent; text-align: center; padding: 10px 0; color: #1cb1ff;
+  border-bottom: 1px solid #125f9d; border-right: 1px solid #125f9d;
+  .ivu-table-cell { line-height: 36px; }
+}
+/******** 表格（间隔色） ********/
+.hover-table {
+  border: 0; width: 100%; 
+}
+.hover-table .ivu-table {
+  background-color: transparent;
+}
+.hover-table table {
+  font-size: 16px; color: #fff;
+}
+.hover-table .ivu-table {
+  &:before, &:after {
+    background-color: transparent;
+  }
+}
+.hover-table table tr th {
+  height: initial; padding: 20px 0; background-color: rgba(28, 177, 255, .3);
+  text-align: center; border-bottom: 0; color: #0093f0;
+  .ivu-table-cell { line-height: 28px; }
+}
+.hover-table table tr td  {
+  background-color: transparent; text-align: center; padding: 15px 0; color: #fff; border-bottom: 0;
+  .ivu-table-cell { line-height: 36px; }
+}
+.hover-table table tr:hover td {
+  background-color: rgba(28, 177, 255, .2);
+}
+
+.tmp-table {
+  .ivu-table-cell {
+    line-height: 32px;
+  }
+}
+.device-box{
+  .stripe-table table tr th{
+    background-color: transparent;
+  }
+  .stripe-table table tr:nth-child(even) td{
+    background-color: transparent;
+  }
+  .stripe-table{
+    button[class^="btn-"]{
+      width: 38px;
+      height: 38px;
+      border: 0;
+      outline: none;
+      cursor: pointer;
+      background-color: transparent;
+      background-image: url(../../assets/image/device-btns.png);
+      background-repeat: no-repeat;
+      margin-left: 10px;
+    }
+    .btn-export{
+      background-position: 0 0;
+      margin-left: 0;
+    }
+    .btn-add{
+      background-position: -48px 0;
+    }
+    .btn-delete{
+      background-position: -96px 0;
+    }
+    .btn-edit{
+      background-position: -144px 0;
+    }
+  }
+}
+
+.app-table-border {
+  border: 1px solid #125f9d; border-bottom: 0; border-right: 0;
+  .ivu-table {
+    background-color: transparent;
+    &:before, &:after {
+      background-color: #125f9d;
+    }
+  }
+  .ivu-checkbox-wrapper {
+    margin-right: 0;
+  }
+  table {
+    font-size: 16px; color: #fff;
+    tr {
+      th {
+        height: initial; padding: 0; background-color: #143778; text-align: center;
+        border-bottom: 1px solid #125f9d; border-right: 1px solid #125f9d; line-height: 64px;
+        .ivu-table-cell {
+          padding: 0; margin: 0 10px;
+        }
+      }
+      td {
+        height: initial; padding: 0 0; background-color: transparent; border-bottom: 1px solid #125f9d;
+        color: #1cb1ff; line-height: 64px; border-right: 1px solid #125f9d; text-align: center;
+        .ivu-table-cell {
+          padding: 0; margin: 0 10px;
+        }
+      }
+    }
+  }
+}

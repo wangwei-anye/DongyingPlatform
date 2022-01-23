@@ -1,0 +1,43 @@
+/******** 登录按钮 ********/
+.app-button-login {
+	width: 160px; height: 48px; padding: 0; color: #fff; font-size: 16px; font-weight: bold;
+	background: rgba(64, 199, 255, .43); border: none;
+	&:hover { background: rgba(64, 199, 255, .8); color: #fff; }
+}
+
+/******** 添加分管片区按钮 ********/
+.app-button-addunit {
+	width: 98px; height: 32px; padding: 0; color: #1cb1ff; font-size: 14px; font-weight: bold;
+	background: rgba(28, 177, 255, .1); border: 1px dashed rgba(42, 127, 206, 0.86); border-radius: 0;
+	i { font-size: 14px; margin-right: 2px; }
+	&:hover { background: rgba(28, 177, 255, .1); color: #1cb1ff; }
+}
+
+/******** 搜索按钮/查询按钮 ********/
+.app-button-search {
+	width: 98px; height: 32px; padding: 0; color: #333; font-size: 14px; font-weight: bold;
+	background: rgba(255, 221, 64, .9); border: none;
+	&:hover { background: rgba(255, 221, 64, .9); color: #333; }
+}
+
+/******** 确认按钮/取消按钮 ********/
+.app-button-confirm {
+	width: 98px; height: 32px; padding: 0; color: #fff; font-size: 14px; font-weight: bold;
+	background: rgba(64, 199, 255, .43); border: none;
+	&:hover { background: rgba(64, 199, 255, .8); color: #fff; }
+}
+
+/******** 导出按钮/添加按钮/删除按钮/编辑按钮 ********/
+.app-button-table {
+	width: 32px; height: 32px; padding: 0; color: #1cb1ff; font-size: 14px; font-weight: bold;
+	background: rgba(28, 177, 255, .1); border: 1px solid rgba(28, 177, 255, .27);
+	i { font-size: 18px; }
+	&:hover { background: rgba(28, 177, 255, .5); border: 1px solid rgba(28, 177, 255, .27); color: #fff;  }
+}
+
+/******** 启用按钮/取消按钮/创建角色/分配资源/重设密码/删除按钮 ********/
+.app-button-power {
+	width: 80px; height: 28px; padding: 0; color: #1993df; font-size: 12px; font-weight: bold;
+	background: rgba(1, 63, 254, .1); border: 1px solid #01a3fe;
+	&:hover { background: rgba(64, 199, 255, .5); color: #fff; border-color: #01a3fe; }
+}

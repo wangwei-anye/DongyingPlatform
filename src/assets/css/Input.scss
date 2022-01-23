@@ -1,0 +1,84 @@
+/******** 登录输入框 ********/
+.app-input-login {
+	width: 400px;
+	.ivu-input {
+		height: initial; background: transparent; border: none; border-bottom: 2px solid rgba(66, 159, 255, .5);
+		line-height: initial; font-size: 16px; color: #fff; font-weight: bold; padding: 4px 8px 6px 8px; border-radius: 0;
+		&:focus {
+			border: none; box-shadow: none; border-bottom: 2px solid #1582d7;
+		}
+		&::-webkit-input-placeholder {
+			color: rgba(28, 177, 255, .5);
+		}
+		&:-moz-placeholder {
+			color: rgba(28, 177, 255, .5);
+		}
+		&::-moz-placeholder {
+			color: rgba(28, 177, 255, .5);
+		}
+		&:-ms-input-placeholder {
+			color: rgba(28, 177, 255, .5);
+		}
+	}
+}
+
+/******** 搜索输入框 ********/
+.app-input-search {
+	.ivu-input {
+		background: rgba(28, 177, 255, .1); border: 1px solid rgba(28, 177, 255, .86); border-radius: 0;
+		font-size: 14px; color: #fff; font-weight: bold; padding: 4px 8px;
+	}
+}
+
+/******** 数字输入框 ********/
+.app-input-number {
+	width: 54px; background: rgba(28, 177, 255, .1); border: 1px solid rgba(28, 177, 255, .86); border-radius: 0;
+	.ivu-input-number-handler-wrap {
+		background: transparent; border-radius: 0; border: none;
+		.ivu-input-number-handler {
+			color: #1cb1ff;
+		}
+		.ivu-input-number-handler-up {
+			bottom: initial; top: 1px; right: 0;
+		}
+		.ivu-input-number-handler-down {
+			border-top: 0; top: initial; bottom: 1px; right: 0;
+		}
+	}
+	.ivu-input-number-input {
+		background: rgba(28, 177, 255, .1); border-radius: 0; font-size: 14px; color: #fff; font-weight: bold;
+		padding: 0; padding: 8px;
+	}
+}
+
+/******** 表单输入框 ********/
+.app-input-form {
+	.ivu-input {
+		background: rgba(28, 177, 255, .1); border: 1px solid rgba(28, 177, 255, .86); border-radius: 0;
+		font-size: 14px; color: #fff; font-weight: bold; padding: 4px 8px;
+	}
+}
+
+/******** 查询输入框 ********/
+.app-input-query {
+	&:after {
+    font-family: 'app-icon' !important; font-size: 18px; font-style:normal; 
+    -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale;
+		content: '\e960'; color: #1b9eeb; position: absolute; top: 5px; right: 8px; 
+	}
+	.ivu-input {
+		background: rgba(28, 177, 255, .1); border: 1px solid rgba(28, 177, 255, .86); border-radius: 0;
+		font-size: 14px; color: #fff; font-weight: bold; padding: 4px 8px; padding-right: 30px;
+		&::placeholder {
+			color: rgba(145, 215, 252, .66);
+		}
+	}
+}
+
+.app-input-modal {
+	margin-top: 10px; width: 210px;
+	.ivu-input {
+		height: 38px; background: #fff; border: none; border-radius: 0; padding: 4px 8px;
+		font-size: 16px; color: #000;
+	}
+}

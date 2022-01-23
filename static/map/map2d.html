@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8" />
+   <title></title>
+
+<link rel="stylesheet" href="css/ol.css" type="text/css">
+<link rel="stylesheet" href="css/map2d.css" type="text/css">
+<script src="js/common/jquery-1.11.2.min.js" type="text/javascript"></script>
+<script src="js/common/ol.js" type="text/javascript"></script>
+<script src="mapconfig.js"></script>
+<script src="js/map2d.js" type="text/javascript"></script>
+</head>
+<body >
+
+<div id="map2d" class="map2d">
+	<div id="map2dPopup" class="ol-popup" >
+		<div id="map2dPopup-content" class="ol-popup-content"></div>
+	</div>
+	<div id="map2dpeople">
+		<div class="input-group">
+			<label class="checkbox" for="showpeoplelayer" style="font-size:14px;color:white;margin-left:5px;margin-top:5px;position: absolute;" >
+			   <input type="checkbox"  value="" id="showm2dpeoplelayer" data-toggle="checkbox" onclick="Oeasymap2d.showPheatmaplayer()">
+												 人口密度
+			</label>
+		 </div>
+	</div>
+	<div id="map2dhouse">
+		<div class="input-group">
+			<label class="checkbox" for="showhouselayer" style="font-size:14px;color:white;margin-left:5px;margin-top:5px;position: absolute;" >
+			   <input type="checkbox"  value="" id="showm2dhouselayer" data-toggle="checkbox" onclick="Oeasymap2d.showHheatmaplayer()">
+												 房屋密度
+			</label>
+		 </div>
+	</div>
+	<div id="map2dsearchdiv">
+		<input type="text" placeholder="搜索视频" id="map2dsearchtxt" >
+		<img title="取消搜索" src="images/sousuocancle.png"  id="map2dsearch-cancle" onclick="Oeasymap2d.searchcancle()"></img>
+		<div id="map2dquery">
+			<img title="搜索" src="images/sousuo.png"  id="map2dsearch-sousuo" onclick="Oeasymap2d.searchresult()"></img>
+		</div>
+	</div>
+	<div id="map2dlistpanel">
+        <div id="map2dsearchlist"></div>
+	</div>
+	
+</div>
+
+
+
+
+
+
+
+
+</body>
+</html>

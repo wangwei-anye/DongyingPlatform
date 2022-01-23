@@ -1,0 +1,92 @@
+body {
+	overflow: hidden;
+	margin:0;
+	padding:0;
+}
+#main2ddiv {
+	width: 100%;
+	height: 100%;
+	display: block;
+	position: absolute;
+}
+#main2dmaphead {
+	width: 100%;
+	height: 6%;
+	top:0px;
+	display: block;
+	position: absolute;
+	background: rgba(21,124,193,1);
+	border: 1px solid #008dd7;
+}
+.main2dmap {
+	width: 100%;
+	height: 92%;
+	bottom:0px;
+	display: block;
+	position: absolute;
+	border: 1px solid #008dd7;
+	box-sizing: border-box;
+}
+
+#main2dmapPopup{
+	background-image: url("../images/popup.png");
+	min-width:200px;
+	min-height:100px;
+	position: absolute;
+	background-size:100% 100%;
+}
+
+.custom-mouse-position{
+    top: 10px;
+    left: 10px;
+    position: absolute;
+    z-index: 20;
+}
+
+#main2dmappeople {
+	width: 100px;
+	height: 30px;
+	top:5px;
+	right: 160px;
+	display: block;
+	position: absolute;
+	z-index: 30;
+	
+}
+
+#main2dmaphouse {
+	width: 100px;
+	height: 30px;
+	top:5px;
+	right: 60px;
+	display: block;
+	position: absolute;
+	z-index: 30;
+	
+}
+#main2dmapheadtitle {
+	
+	top:5px;
+	left: 10px;
+	display: block;
+	position: absolute;
+	z-index: 30;
+	color: white;
+	font-size: 18px;
+}
+
+#main2dmaplink {
+	
+	top:10px;
+	right: 15px;
+	display: block;
+	position: absolute;
+	z-index: 30;
+	
+}
+	
+
+
+
+
+

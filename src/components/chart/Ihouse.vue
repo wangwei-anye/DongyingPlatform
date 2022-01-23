@@ -1,0 +1,459 @@
+<template>
+  <v-chart-box hrefto='/index/house' boxType='orthogon' iconName='house' :w="size[0]" :h="size[1]" boxTitle="房屋数据">
+    <div class="chartbox">
+      <div class="cbox" :class="info">
+        <div class="shadebox">
+          <div class="c1">
+            <div class="c2">
+              <div class="c3">
+                <div class="c4"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="echarts"></div>
+      </div>
+      <div class="txtbox" v-show="info === 'left'">
+        <div class="item">
+          <h4>小区房屋总数</h4>
+          <p><em>{{total}}</em>户</p>
+        </div>
+        <div class="item">
+          <h4>小区入住率</h4>
+          <p><em>{{ data.occRate.replace(/%$/, '') }}</em>%</p>
+        </div>
+      </div>
+      <div class="smallchart" v-show="info === 'right'">
+        <p title="1223550"><span>房屋总数：</span>{{ total }}</p>
+        <div class="schart">
+          <div class="top"></div>
+          <div class="bot"></div>
+          <div class="wrap">
+            <div class="tit">入住率</div>
+            <div class="spie"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </v-chart-box>
+</template>
+<script>
+import vChartBox from '@/components/ChartBox'
+import echarts from 'echarts/lib/echarts'
+import 'echarts/lib/chart/pie'
+import 'echarts/lib/component/tooltip'
+import 'echarts/lib/component/legend'
+export default {
+  name: 'ihouse',
+  props: {
+    /**
+     * 数据类型
+     * {
+     *   list: [
+     *     { value: 20, name: '混合式', color: '#ffda2e' },
+     *     { value: 30, name: '开放式', color: '#2951ff' },
+     *     { value: 50, name: '封闭式', color: '#00ffea' }
+     *   ],
+     *   occRate: '26%'  // 入住率
+     * }
+     */
+    data: {
+      type: Object,
+      required: true,
+      default: function () {
+        return {
+          list: [],
+          occRate: '0%'
+        }
+      }
+    },
+    delay: {
+      type: Number,
+      default: 1500
+    },
+    info: {
+      type: String,
+      default: 'left'
+    },
+    size: {
+      type: Array,
+      default: function (){
+        return [413, 311]
+      }
+    }
+  },
+  data () {
+    return {
+      pie: null,
+      spie: null,
+      timer: null
+    }
+  },
+  computed: {
+    total () {
+      let sum = 0;
+      this.data.list.forEach(item => {
+        sum += item.value
+      })
+      return sum
+    },
+    spieOption () {
+      const value = this.data.occRate.replace(/%$/, '')
+      return {
+        series: [
+          {
+            name: '入住率',
+            type: 'pie',
+            radius: [40, 45],
+            center: ['50%', '60%'],
+            avoidLabelOverlap: false,
+            hoverOffset: 0,
+            selectedOffset: 0,
+            silent: true,
+            data: [
+              {
+                name: '入住率',
+                value: value,
+                label: {
+                  normal: {
+                    show: true
+                  }
+                },
+                itemStyle: {
+                  normal: {
+                    color: '#008aff'
+                  }
+                }
+              },
+              {
+                name: '未入住率',
+                value: 100 - value,
+                itemStyle: {
+                  normal: {
+                    color: '#235182'
+                  }
+                }
+              }
+            ],
+            label: {
+              normal: {
+                show: false,
+                position: 'center',
+                fontSize: 18,
+                color: '#fff',
+                formatter: '{d}%'
+              },
+              emphasis: {
+                show: true
+              }
+            }
+          }
+        ]
+      }
+    }
+  },
+  methods: {
+    getDeg (value) {
+      return (value / this.total) * 360
+    },
+    initOption (data) {
+      let rPosition = [
+        [50, 53],
+        [45, 50],
+        [57, 60],
+        [60, 66],
+        [40, 50]
+      ];
+      let defaultDeg = 0;
+      let tmpList = [];
+      for(let i=0; i<data.list.length; i++) {
+        let deg = defaultDeg;
+        if (i === 0) {
+          deg = this.getDeg(data.list[i].value);
+        } else {
+          deg = tmpList[i-1].deg + this.getDeg(data.list[i].value);
+        }
+        tmpList.push({
+          value: data.list[i].value,
+          name: data.list[i].name,
+          color: data.list[i].color,
+          deg: deg
+        });
+      }
+      let seriesArr = [];
+      tmpList.forEach((item, index) => {
+        seriesArr.push({
+          name: '数据来源',
+          type: 'pie',
+          radius: rPosition[index],
+          startAngle: item.deg,
+          silent: true,
+          data: [
+            {
+              value: item.value,
+              name: item.name,
+              itemStyle: {
+                normal: {
+                  color: item.color
+                }
+              },
+              label: {
+                normal: {
+                  color: '#fff',
+                  formatter: '{b}\n{d}%'
+                }
+              },
+              labelLine: {
+                normal: {
+                  length: 30,
+                  lineStyle: {
+                    color: '#fff',
+                    type: 'dashed'
+                  }
+                }
+              }
+            },
+            { 
+              value: (this.total - item.value),
+              name: '占位',
+              itemStyle: {
+                normal: {
+                  color: 'transparent'
+                }
+              }
+            }
+          ]
+        })
+      });
+      //console.log(seriesArr)
+      return {
+        series: seriesArr
+      }
+    },
+    degToArc (deg) {
+      return (Math.PI / 180) * deg
+    }
+  },
+  components: {
+    vChartBox
+  },
+  mounted () {
+    this.$nextTick(function(){
+      this.pie = echarts.init(this.$el.querySelector('.echarts'))
+      const opt = this.initOption(this.data)
+      this.pie.setOption(opt, true)
+
+      this.spie = echarts.init(this.$el.querySelector('.spie'))
+      this.spie.setOption(this.spieOption, true)
+    })
+  },
+  watch: {
+    data (val, oldVal) {
+      const opt = this.initOption(val)
+      this.pie.setOption(opt, true)
+      this.spie.setOption(this.spieOption, true)
+    }
+  }
+}
+</script>
+<style lang="scss" scoped>
+.chartbox{
+  position: relative;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+.echarts {
+  width: 100%;
+  height: 100%;
+}
+.cbox{
+  position: absolute;
+  top: 0;
+  left: 70px;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+.cbox.right{
+  left: -70px;
+}
+.shadebox {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 170px;
+  height: 170px;
+  border-radius: 50%;
+  border: 2px solid #dcdcdc;
+  div{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+  .c1{
+    width: 162px;
+    height: 162px;
+    border-radius: 50%;
+    border: 1px solid #dcdcdc;
+  }
+  .c2{
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    border: 1px dashed #dcdcdc;
+  }
+  .c3{
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    border: 1px dashed #dcdcdc;
+  }
+  .c4{
+    width: 64px;
+    height: 64px;
+    border-radius: 50%;
+    border: 1px dashed #dcdcdc;
+  }
+}
+.txtbox{
+  position: absolute;
+  top: 50%;
+  left: 20px;
+  transform: translateY(-50%);
+  font-size: 16px;
+  color: #1cb1ff;
+  .item{
+    position: relative;
+    padding: 12px 0 6px;
+    &:after{
+      content: '';
+      position: absolute;
+      top: 0;
+      right: 0;
+      left: 0;
+      height: 2px;
+      background: linear-gradient(90deg, rgba(28, 177, 255, 0), rgba(28, 177, 255, 0.3), rgba(28, 177, 255, 0));
+    }
+    &:nth-of-type(2):before{
+      content: '';
+      position: absolute;
+      bottom: 0;
+      right: 0;
+      left: 0;
+      height: 2px;
+      background: linear-gradient(90deg, rgba(28, 177, 255, 0), rgba(28, 177, 255, 0.3), rgba(28, 177, 255, 0));
+    }
+  }
+  p{
+    color: #fff;
+    line-height: normal;
+  }
+  em {
+    font-style: normal;
+    font-size: 36px;
+  }
+}
+.smallchart{
+  position: absolute;
+  top: 0;
+  right: 6px;
+  bottom: 0;
+  width: 148px;
+  p{
+    margin-top: 30px;
+    color: #fff;
+    font-size: 18px;
+    text-align: center;
+    overflow: hidden;
+    width: 100%;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    span{
+      font-size: 12px;
+      color: #1cb1ff;
+    }
+  }
+  .schart{
+    position: absolute;
+    bottom: 12px;
+    left: 1px;
+    width: 146px;
+    height: 184px;
+    border: 1px solid #1c5893;
+    padding: 5px;
+  }
+  .top{
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    &:before{
+      content: '';
+      position: absolute;
+      top: -2px;
+      left: -2px;
+      width: 6px;
+      height: 6px;
+      border-left: 3px solid #1c5893;
+      border-top: 3px solid #1c5893;
+    }
+    &:after{
+      content: '';
+      position: absolute;
+      top: -2px;
+      right: -2px;
+      width: 6px;
+      height: 6px;
+      border-right: 3px solid #1c5893;
+      border-top: 3px solid #1c5893;
+    }
+  }
+  .bot{
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    &:before{
+      content: '';
+      position: absolute;
+      bottom: -2px;
+      left: -2px;
+      width: 6px;
+      height: 6px;
+      border-left: 3px solid #1c5893;
+      border-bottom: 3px solid #1c5893;
+    }
+    &:after{
+      content: '';
+      position: absolute;
+      bottom: -2px;
+      right: -2px;
+      width: 6px;
+      height: 6px;
+      border-right: 3px solid #1c5893;
+      border-bottom: 3px solid #1c5893;
+    }
+  }
+  .wrap{
+    position: relative;
+    width: 100%;
+    height: 100%;
+    background: rgba(91,199,255, .05);
+    color: #1cb1ff;
+  }
+  .spie{
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+  }
+  .tit{
+    position: absolute;
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+}
+</style>

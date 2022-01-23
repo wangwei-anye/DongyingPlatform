@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8" />
+   <title></title>
+
+<link rel="stylesheet" href="css/ol.css" type="text/css">
+<link rel="stylesheet" href="css/main2dmap.css" type="text/css">
+<script src="js/common/jquery-1.11.2.min.js" type="text/javascript"></script>
+<script src="js/common/ol.js" type="text/javascript"></script>
+<script src="mapconfig.js"></script>
+<script src="js/main2dmap.js" type="text/javascript"></script>
+</head>
+<body >
+
+  <div id="main2ddiv">
+    <div id="main2dmaphead">
+        <div id="main2dmapheadtitle">GIS地图</div>
+        <div id="main2dmappeople">
+            <div class="input-group">
+              <label class="checkbox" for="showpeoplelayer" style="font-size:14px;color:white;margin-left:5px;margin-top:5px;position: absolute;" >
+                 <input type="checkbox"  value="" id="showpeoplelayer" data-toggle="checkbox" onclick="Oeasymain2dmap.showPheatmaplayer()">
+                                 人口密度
+              </label>
+             </div>
+          </div>
+          <div id="main2dmaphouse">
+            <div class="input-group">
+              <label class="checkbox" for="showhouselayer" style="font-size:14px;color:white;margin-left:5px;margin-top:5px;position: absolute;" >
+                 <input type="checkbox"  value="" id="showhouselayer" data-toggle="checkbox" onclick="Oeasymain2dmap.showHheatmaplayer()">
+                                 房屋密度
+              </label>
+             </div>
+          </div>
+          <a id="main2dmaplink" href="">
+            <img title="" src="images/arrow.png" ></img>
+          </a>
+          
+    </div>
+    <div id="main2dmap" class="main2dmap">
+      <div id="main2dmapPopup" class="ol-popup" >
+        <div id="main2dmapPopup-content" class="ol-popup-content"></div>
+      </div>
+      
+    </div>
+  </div>
+
+
+
+</body>
+</html>
